@@ -1,14 +1,15 @@
 import { use, useState } from 'react'
 import './App.css'
 import { TonConnectUIProvider, TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react'
-import { SDKProvider, webApp, initData} from '@telegram-apps/sdk-react'
+import { SDKProvider, initInvoice} from '@telegram-apps/sdk-react'
 
 function App() {
   const [count, setCount] = useState(0)
   const [tonConnectUI] = useTonConnectUI();
 
-  const useWebApp = webApp()
-  const useInitData = initData()
+  // const useWebApp = webApp()
+  // const useInitData = initDuuata()
+  const invoice = initInvoice()
 
 
   const handleWalletAction = async () => {
@@ -21,20 +22,27 @@ function App() {
 
   const handleStarsPayment = async () => {
     try{
-      await useWebApp.showInvoice({
-        title: 'Premium Feature', // Title of the item
-        description: 'Unlock exclusive content', // Description
-        prices: [
-          { 
-            label: 'Premium Access', 
-            amount: 5 * 1000000 // 5 Stars (converted to micro-stars)
-          }
-        ],
-        payload: JSON.stringify({
-          userId: useInitData.user.id,
-          productId: 'premium_feature_001',
-          timestamp: Date.now()
-        })
+
+
+      await invoice.open("SoundRig").then((status) => {
+        return console.log(status);
+        
+      })
+
+      // await useWebApp.showInvoice({
+      //   title: 'Premium Feature', // Title of the item
+      //   description: 'Unlock exclusive content', // Description
+      //   prices: [
+      //     { 
+      //       label: 'Premium Access', 
+      //       amount: 5 * 1000000 // 5 Stars (converted to micro-stars)
+      //     }
+      //   ],
+      //   payload: JSON.stringify({
+      //     userId: useInitData.user.id,
+      //     productId: 'premium_feature_001',
+      //     timestamp: Date.now()
+      //   })
         //photoUrl: 'https://example.com/product-image.jpg' // Optional product image
       });
     } catch (error) {
