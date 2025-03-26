@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <div>
-      {/* <button
+      <button
             onClick={handleWalletAction}
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
           >
@@ -36,7 +36,7 @@ function App() {
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
           >
             Buy Stars
-          </button> */}
+          </button>
       </div>
       
     </>
