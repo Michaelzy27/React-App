@@ -1,8 +1,7 @@
 import { use, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { TonConnectUIProvider, TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react'
+//import { SDKProvider, useWebApp, useInitData } from '@telegram-apps/sdk-react'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +16,10 @@ function App() {
     
   }
 
+  const handleStarsPayment = async () => {
+
+  }
+
 
   return (
     <>
@@ -28,6 +31,12 @@ function App() {
             Disconnect Wallet
           </button>
       <TonConnectButton/>
+      <button
+            onClick={handleStarsPayment}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Buy Stars
+          </button>
       </div>
       
     </>
