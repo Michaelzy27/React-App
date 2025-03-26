@@ -44,7 +44,7 @@ function App() {
       //     timestamp: Date.now()
       //   })
         //photoUrl: 'https://example.com/product-image.jpg' // Optional product image
-      });
+      //});
     } catch (error) {
 
     }
