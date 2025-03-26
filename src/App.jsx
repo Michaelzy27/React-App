@@ -1,14 +1,14 @@
 import { use, useState } from 'react'
 import './App.css'
 import { TonConnectUIProvider, TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react'
-import { SDKProvider, useWebApp, useInitData } from '@telegram-apps/sdk-react'
+import { SDKProvider, webApp, initData} from '@telegram-apps/sdk-react'
 
 function App() {
   const [count, setCount] = useState(0)
   const [tonConnectUI] = useTonConnectUI();
 
-  const webApp = useWebApp()
-  const initData = useInitData()
+  const useWebApp = webApp()
+  const useInitData = initData()
 
 
   const handleWalletAction = async () => {
@@ -21,7 +21,7 @@ function App() {
 
   const handleStarsPayment = async () => {
     try{
-      await webApp.showInvoice({
+      await useWebApp.showInvoice({
         title: 'Premium Feature', // Title of the item
         description: 'Unlock exclusive content', // Description
         prices: [
@@ -31,7 +31,7 @@ function App() {
           }
         ],
         payload: JSON.stringify({
-          userId: initData.user.id,
+          userId: useInitData.user.id,
           productId: 'premium_feature_001',
           timestamp: Date.now()
         })
