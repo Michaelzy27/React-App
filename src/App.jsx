@@ -21,7 +21,7 @@ function App() {
 
   const handleStarsPayment = async () => {
     try{
-      const invoiceResult = await webApp.showInvoice({
+      await webApp.showInvoice({
         title: 'Premium Feature', // Title of the item
         description: 'Unlock exclusive content', // Description
         prices: [
