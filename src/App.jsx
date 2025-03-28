@@ -1,19 +1,24 @@
 import { use, useState } from 'react'
 import './App.css'
 import { TonConnectUIProvider, TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react'
-import { SDKProvider, initInvoice} from '@telegram-apps/sdk-react'
+//import { SDKProvider, initInvoice, LaunchParams} from '@telegram-apps/sdk-react'
+import WebApp from '@twa-dev/sdk'
 
 function App() {
   const [count, setCount] = useState(0)
   const [tonConnectUI] = useTonConnectUI();
 
+  const webAppi = window.Telegram.WebApp 
+
   // const useWebApp = webApp()
   // const useInitData = initDuuata()
-  const invoice = initInvoice()
+  //const invoice = initInvoice()
 
 
   const handleWalletAction = async () => {
     console.log("button clicked");
+    console.log(TWASDK);
+    
     if(tonConnectUI){console.log("uuu");
     }
     await tonConnectUI.openModal();
@@ -24,10 +29,24 @@ function App() {
     try{
 
 
-      await invoice.open("SoundRig").then((status) => {
-        return console.log(status);
+      // await invoice.open("SoundRig").then((status) => {
+      //   return console.log(status);
         
-      })
+      // })
+
+      console.log("hhjj");
+      
+
+      await webAppi.WebApp.showInvoice({
+        title: 'Premium Feature',
+        description: 'Unlock exclusive content',
+        prices: [
+          { 
+            label: 'Premium Access', 
+            amount: 5 * 1000000 // 5 Stars
+          }
+        ]
+      });
 
       // await useWebApp.showInvoice({
       //   title: 'Premium Feature', // Title of the item
