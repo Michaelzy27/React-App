@@ -2,7 +2,7 @@ import { use, useState } from 'react'
 import './App.css'
 import { TonConnectUIProvider, TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react'
 //import { SDKProvider, initInvoice, LaunchParams} from '@telegram-apps/sdk-react'
-import WebApp from '@twa-dev/sdk'
+//import WebApp from '@twa-dev/sdk'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -37,7 +37,7 @@ function App() {
       console.log("hhjj");
       
 
-      await webAppi.WebApp.showInvoice({
+      await webAppi.showInvoice({
         title: 'Premium Feature',
         description: 'Unlock exclusive content',
         prices: [
