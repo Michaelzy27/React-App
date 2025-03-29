@@ -8,9 +8,9 @@ function App() {
   const [count, setCount] = useState(0)
   const [tonConnectUI] = useTonConnectUI();
 
-  const webAppi = window.Telegram.WebApp
+  //const webAppi = window.Telegram.WebApp
 
-  //const useWebApp = WebApp()
+  const useWebApp = WebApp()
   // const useInitData = initDuuata()
   //const invoice = initInvoice()
 
@@ -40,7 +40,8 @@ function App() {
 
       
 
-      await webAppi.showInvoice({
+
+      await useWebApp.showInvoice({
         title: 'Premium Feature',
         description: 'Unlock exclusive content',
         prices: [
@@ -50,6 +51,17 @@ function App() {
           }
         ]
       });
+
+      // await webAppi.showInvoice({
+      //   title: 'Premium Feature',
+      //   description: 'Unlock exclusive content',
+      //   prices: [
+      //     { 
+      //       label: 'Premium Access', 
+      //       amount: 5 * 1000000 // 5 Stars
+      //     }
+      //   ]
+      // });
 
       // await useWebApp.showInvoice({
       //   title: 'Premium Feature', // Title of the item
