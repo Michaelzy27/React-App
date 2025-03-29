@@ -2,22 +2,21 @@ import { use, useState } from 'react'
 import './App.css'
 import { TonConnectUIProvider, TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react'
 //import { SDKProvider, initInvoice, LaunchParams} from '@telegram-apps/sdk-react'
-//import WebApp from '@twa-dev/sdk'
+import WebApp from '@twa-dev/sdk'
 
 function App() {
   const [count, setCount] = useState(0)
   const [tonConnectUI] = useTonConnectUI();
 
-  const webAppi = window.Telegram.WebApp 
+  const webAppi = window.Telegram.WebApp
 
-  // const useWebApp = webApp()
+  //const useWebApp = WebApp()
   // const useInitData = initDuuata()
   //const invoice = initInvoice()
 
 
   const handleWalletAction = async () => {
     console.log("button clicked");
-    console.log(TWASDK);
     
     if(tonConnectUI){console.log("uuu");
     }
@@ -35,6 +34,10 @@ function App() {
       // })
 
       console.log("hhjj");
+      // WebApp.sendData()
+      // WebApp.openInvoice()
+      //useWebApp.showInvoice()
+
       
 
       await webAppi.showInvoice({
