@@ -36,7 +36,7 @@ function App() {
     try{
 
       try {
-        const response = await fetch(`http://app.soundrig.io/payment/invoice/130`, {
+        const response = await fetch(`https://soundrig-backend-2.onrender.com/payment/invoice/130`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
