@@ -55,6 +55,8 @@ function App() {
         })
     
         console.log("response: " + response);
+        console.log("response json: " + response.json());
+        
         console.log("respose body: " + response.body);
       } catch (error) {
         console.log("error: " + error);
