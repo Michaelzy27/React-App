@@ -53,8 +53,13 @@ function App() {
             tun3zId: 1,
           })
         })
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error);
+        }
     
-        console.log("response: " + await response);
+        console.log("response: " + response);
         console.log("response json: " + await response.json());
         console.log("data: " + response.body);
         
