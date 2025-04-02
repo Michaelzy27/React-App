@@ -24,8 +24,42 @@ function App() {
     
   }
 
+  // useWebApp.openInvoice('payment invoice', (status) => {
+  //   if (status == 'successful') {
+
+  //   } else {
+      
+  //   }
+  // })
+
   const handleStarsPayment = async () => {
     try{
+
+      try {
+        const response = await fetch(`http://app.soundrig.io/payment/invoice/130`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: "SoundRig Stars Payment",
+            description: "Payment for Tun3z",
+            payload: "{}",
+            currency: "XTR",
+            prices: [{
+              amount: 10,
+              label: "Payment for Tun3z 3"
+            }],
+            tun3zId: 1,
+          })
+        })
+    
+        console.log("response: " + response);
+        console.log("respose body: " + response.body);
+      } catch (error) {
+        console.log("error: " + error);
+        
+      }
 
 
       // await invoice.open("SoundRig").then((status) => {
