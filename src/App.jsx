@@ -163,7 +163,8 @@ function App() {
       const data = await response.json();
       const starsInvoice = data.link;
       console.log(starsInvoice);
-      useWebApp.openLink(starsInvoice);
+      //useWebApp.openLink(starsInvoice);
+      window.Telegram.WebApp.openInvoice(starsInvoice);
       
       // window.Telegram.WebApp.openInvoice(starsInvoice);
       // console.log(useWebApp.version);
