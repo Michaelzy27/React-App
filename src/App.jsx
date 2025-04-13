@@ -178,9 +178,7 @@ function App() {
       const starsInvoice = data.link;
       console.log(starsInvoice);
       //useWebApp.openLink(starsInvoice);
-      if (webApp) {
-        alert("telegram webapp exists")
-      } else if (webApp?.openInvoice) {
+      if (webApp?.openInvoice) {
         webApp.openInvoice(starsInvoice);
       } else {
         alert("Telegram WebApp not available or method unsupported.");
