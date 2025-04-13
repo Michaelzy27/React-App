@@ -8,6 +8,8 @@ function App() {
   const [count, setCount] = useState(0)
   const [tonConnectUI] = useTonConnectUI();
 
+  const webApp = window.Telegram.WebApp;
+
   //const webAppi = window.Telegram.WebApp
 
   const useWebApp = WebApp
@@ -164,7 +166,7 @@ function App() {
       const starsInvoice = data.link;
       console.log(starsInvoice);
       //useWebApp.openLink(starsInvoice);
-      window.Telegram.WebApp.openInvoice(starsInvoice);
+      webApp.openInvoice(starsInvoice);
       
       // window.Telegram.WebApp.openInvoice(starsInvoice);
       // console.log(useWebApp.version);
