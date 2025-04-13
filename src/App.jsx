@@ -1,14 +1,26 @@
-import { use, useState } from 'react'
+import { use, useState, useEffect } from 'react'
 import './App.css'
 import { TonConnectUIProvider, TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react'
 //import { SDKProvider, initInvoice, LaunchParams} from '@telegram-apps/sdk-react'
 import WebApp from '@twa-dev/sdk'
 
 function App() {
-  const [count, setCount] = useState(0)
+  //const [count, setCount] = useState(0)
   const [tonConnectUI] = useTonConnectUI();
 
-  const webApp = window.Telegram.WebApp;
+  const [webApp, setWebApp] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+      setWebApp(window.Telegram.WebApp);
+      console.log('Telegram WebApp SDK version:', window.Telegram.WebApp.version);
+    } else {
+      console.warn("Telegram WebApp not found. Are you running inside Telegram?");
+    }
+  }, []);
+
+  //const webApp = window.Telegram.WebApp;
 
   //const webAppi = window.Telegram.WebApp
 
@@ -166,7 +178,11 @@ function App() {
       const starsInvoice = data.link;
       console.log(starsInvoice);
       //useWebApp.openLink(starsInvoice);
-      webApp.openInvoice(starsInvoice);
+      if (webApp?.openInvoice) {
+        webApp.openInvoice(starsInvoice);
+      } else {
+        alert("Telegram WebApp not available or method unsupported.");
+      }
       
       // window.Telegram.WebApp.openInvoice(starsInvoice);
       // console.log(useWebApp.version);
