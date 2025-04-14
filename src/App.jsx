@@ -170,6 +170,8 @@ function App() {
         })
       })
 
+      alert(window.Telegram?.WebApp?.version);
+
       if(!response.ok) {
         throw new Error("Failed!")
       }
@@ -184,7 +186,7 @@ function App() {
       //   alert("Telegram WebApp not available or method unsupported.");
       // }
       
-      if(useWebApp.openInvoice) {
+      if(useWebApp?.openInvoice) {
         useWebApp.openInvoice(starsInvoice);
       } else {
         console.log("openInvoice does not exist");
