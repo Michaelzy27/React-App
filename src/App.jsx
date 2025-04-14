@@ -178,12 +178,18 @@ function App() {
       const starsInvoice = data.link;
       console.log(starsInvoice);
       //useWebApp.openLink(starsInvoice);
-      if (webApp?.openInvoice) {
-        webApp.openInvoice(starsInvoice);
-      } else {
-        alert("Telegram WebApp not available or method unsupported.");
-      }
+      // if (webApp?.openInvoice) {
+      //   webApp.openInvoice(starsInvoice);
+      // } else {
+      //   alert("Telegram WebApp not available or method unsupported.");
+      // }
       
+      if(useWebApp.openInvoice) {
+        alert("openInvoice exists")
+      } else {
+        console.log("openInvoice does not exist");
+      }
+
       // window.Telegram.WebApp.openInvoice(starsInvoice);
       // console.log(useWebApp.version);
       
