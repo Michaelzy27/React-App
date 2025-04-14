@@ -185,7 +185,7 @@ function App() {
       // }
       
       if(useWebApp.openInvoice) {
-        alert("openInvoice exists")
+        useWebApp.openInvoice(starsInvoice);
       } else {
         console.log("openInvoice does not exist");
       }
