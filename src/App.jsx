@@ -3,6 +3,8 @@ import './App.css'
 import { TonConnectUIProvider, TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react'
 //import { SDKProvider, initInvoice, LaunchParams} from '@telegram-apps/sdk-react'
 import WebApp from '@twa-dev/sdk'
+import WebView from '@twa-dev/sdk'
+import { invoice } from '@telegram-apps/sdk';
 
 function App() {
   //const [count, setCount] = useState(0)
@@ -25,6 +27,7 @@ function App() {
   //const webAppi = window.Telegram.WebApp
 
   const useWebApp = WebApp
+  const useWebView = WebView
   // const useInitData = initDuuata()
   //const invoice = initInvoice()
 
@@ -170,7 +173,8 @@ function App() {
         })
       })
 
-      alert(window.Telegram?.WebApp?.version);
+      // alert(window.Telegram?.WebApp?.version);
+      alert(useWebView.version)
 
       if(!response.ok) {
         throw new Error("Failed!")
@@ -186,11 +190,13 @@ function App() {
       //   alert("Telegram WebApp not available or method unsupported.");
       // }
       
-      if(useWebApp?.openInvoice) {
-        useWebApp.openInvoice(starsInvoice);
-      } else {
-        console.log("openInvoice does not exist");
-      }
+      // if(useWebApp?.openInvoice) {
+      //   useWebApp.openInvoice(starsInvoice);
+      // } else {
+      //   console.log("openInvoice does not exist");
+      // }
+
+      //invoice.open(starsInvoice, "url");
 
       // window.Telegram.WebApp.openInvoice(starsInvoice);
       // console.log(useWebApp.version);

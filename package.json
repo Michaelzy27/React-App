@@ -13,6 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@telegram-apps/sdk": "^3.7.1",
     "@telegram-apps/sdk-react": "^3.2.0",
     "@tonconnect/ui-react": "^2.0.12",
     "@twa-dev/sdk": "^8.0.2",
