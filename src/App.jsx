@@ -174,7 +174,7 @@ function App() {
       })
 
       // alert(window.Telegram?.WebApp?.version);
-      alert(useWebView.version)
+      alert("usewebview: " + useWebView.version)
 
       if(!response.ok) {
         throw new Error("Failed!")
