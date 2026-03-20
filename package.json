@@ -15,8 +15,12 @@
   "dependencies": {
     "@telegram-apps/sdk": "^3.7.1",
     "@telegram-apps/sdk-react": "^3.2.0",
+    "@ton-pay/api": "^0.3.0",
+    "@ton-pay/ui-react": "^0.3.0",
+    "@ton/ton": "^15.4.0",
     "@tonconnect/ui-react": "^2.0.12",
     "@twa-dev/sdk": "^8.0.2",
+    "qrcode.react": "^3.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -1,13 +1,17 @@
-import { use, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { TonConnectUIProvider, TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react'
+import { TonPayButton, useTonPay } from "@ton-pay/ui-react";
+import { createTonPayTransfer } from "@ton-pay/api";
 //import { SDKProvider, initInvoice, LaunchParams} from '@telegram-apps/sdk-react'
 import WebApp from '@twa-dev/sdk'
 import WebView from '@twa-dev/sdk'
 import { invoice } from '@telegram-apps/sdk';
+//import {Address, TonClient} from '@ton/ton'; //need to install buffer
 
 function App() {
   //const [count, setCount] = useState(0)
+  const { pay } = useTonPay();
   const [tonConnectUI] = useTonConnectUI();
 
   const [webApp, setWebApp] = useState(null);
@@ -31,6 +35,18 @@ function App() {
   // const useInitData = initDuuata()
   //const invoice = initInvoice()
 
+  // const client = new TonClient({
+  //       endpoint: 'https://toncenter.com/api/v2/jsonRPC',
+  //       apiKey: 'c28c1df8dacde65ec3fc26187c09c6fafeedba3b8f6a8f62114eaa3015708824'
+  // })
+
+  //const contractAddress = Address.parse("kQAJ7NaDfCUDUwZoP43T8s7nlSbwI03gKkrJXQjINDDYfM3C");
+
+  //const fractionsLeft = await client.runMethod(contractAddress, "get_fraction_remaining");
+  //const fractionsLeftParse = fractionsLeft.stack.readNumber();
+
+  //const totalFractions = await client.runMethod(contractAddress, "get_fraction_count");
+  //const totalFractionsParse = totalFractions.stack.readNumber();
 
   const handleWalletAction = async () => {
     console.log("button clicked");
@@ -209,23 +225,81 @@ function App() {
     }
   };
 
+  //Legacy method of paying with TonConnect.
+  const handlePayWithTon = async () => {
+
+    tonConnectUI.sendTransaction({
+      validUntil: Date.now() + 1800, //transacton valid for 30 mins
+      messages: [
+        {
+          address: 'EQBBJBB3HagsujBqVfqeDUPJ0kXjgTPLWPFFffuNXNiJL0aA',
+          amount: '10000000', //0.01 TON in nanotons
+          //payload: 'Soundrig inovide #100'
+        }
+      ]
+    }).then((result) => {
+      console.log('Transaction sent successfully:', result);
+    }).catch((error) => {
+      console.error('Error sending transaction:', error);
+    });
+
+
+    //outdated implementation
+    // tonConnectUI.sendTransaction({
+    //   to: 'EQC2XnF5K0vVJSl3k3g4Kc1KXJ1Y9Rz6k2VY1bX5n6O5v0jH', //recipient address
+    //   value: '10000000', //amount in nanotons (0.01 TON)
+    //   data: 'Hello, TonConnect!' //optional data
+    // }).then((result) => {
+    //   console.log('Transaction sent successfully:', result);
+    // }).catch((error) => {
+    //   console.error('Error sending transaction:', error);
+    // });
+  }
+
+  //New way of paying using new Ton Pay SDK
+  const handlePayWithTonPay = async (senderAddress) => {
+    try {
+      const { message, reference } = await createTonPayTransfer(
+        {
+          amount: 20.34,
+          asset: "TON",
+          recipientAddr: "UQDGDEl11jDOtwnKCeyhaZ9rLkDRqYM0dAlYo8ezrp0xp8Hq",
+          senderAddress,
+          commentToSender: "Order #123",
+        },
+        { 
+          chain: "mainnet", // use "mainnet" for production
+          //apiKey: "yourTonPayApiKey" // optional
+        }
+      );
+      return { message, reference };
+    } catch (error) {
+      
+    }
+  }
+
 
   return (
     <>
       <div>
-      <button
-            onClick={handleWalletAction}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Disconnect Wallet
+        <button
+              onClick={handleWalletAction}
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Disconnect Wallet
+            </button>
+        <TonConnectButton/>
+        <button
+              onClick={handleStarsPayment}
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Buy Stars
           </button>
-      <TonConnectButton/>
-      <button
-            onClick={handleStarsPayment}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Buy Stars
-          </button>
+        <button onClick={handlePayWithTon}>
+          Pay with Ton
+        </button>
+        <TonPayButton handlePay={() => pay(handlePayWithTonPay)}/>
+          <div>Hello</div>
       </div>
       
     </>
