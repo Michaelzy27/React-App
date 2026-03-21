@@ -237,11 +237,12 @@ function App() {
           //payload: 'Soundrig inovide #100'
         }
       ]
-    }).then((result) => {
-      console.log('Transaction sent successfully:', result);
-    }).catch((error) => {
-      console.error('Error sending transaction:', error);
-    });
+    })
+    // }).then((result) => {
+    //   console.log('Transaction sent successfully:', result);
+    // }).catch((error) => {
+    //   console.error('Error sending transaction:', error);
+    // });
 
 
     //outdated implementation
